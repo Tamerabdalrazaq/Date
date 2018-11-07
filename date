@@ -1,0 +1,60 @@
+
+
+package com.example.date;
+import java.util.Scanner;
+public class Date {
+   public static int d,m,y;
+    public static  void main (String [] args) {
+        Scanner day  = new Scanner(System.in);
+        Scanner month  = new Scanner(System.in);
+        Scanner year  = new Scanner(System.in);
+        System.out.println("Day:");
+        d = day.nextInt() ;
+        System.out.println("Month:");
+        m = day.nextInt() ;
+        System.out.println("Year:");
+        y = day.nextInt() ;
+        check(d,m,y);
+    }
+    public static void check(int d, int m, int y) {
+    boolean leap = ((y % 4 == 0 && y % 100 != 0) || y%400 == 0) ;
+     if ((d>0 && d <32) && (m>0 && m<13) && y>= 0 ) {
+     if ((m == 4 || m == 6 || m == 9 || m == 11) && d != 31) {
+         next(d,m,y);}
+     else if ((m==2 && d<29) || leap && d==29) { next(d,m,y); }
+     else if ((m==1 || m == 3 || m==5 || m==7 || m==8 || m==10 || m==12)) {next(d,m,y);}
+     else {System.out.println("Wrong date!");}
+     }
+     else {System.out.println("Wrong date!");}
+     }
+    public static void next (int d, int m, int y) {
+        boolean leap = ((y % 4 == 0 && y % 100 != 0) || y%400 == 0) ;
+        if (m == 4 || m == 6 || m == 9 || m == 11) {
+            if (d==30) {m++; d=1;}
+            else{d++;}
+        }
+        else if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10) {
+            if (d == 31) {
+            m++; d=1;
+        } else {d++;}
+        }
+        else if (m == 12) {
+            if (d == 31) {
+            y++; d=1; m=1;}
+            else {d++;}
+        }
+        else if (m == 2) {
+            if (d < 28) {d++;}
+            else {
+            switch (d){
+                case 28:
+                if (leap) {d++;} else {d=1;m=3;}
+                break;
+                case 29:
+                d=1;m=3;
+            }
+        }
+        }
+        System.out.println("Tomorrow: "+d+"."+m+"."+y);
+            }
+        }
